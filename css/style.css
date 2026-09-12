@@ -440,12 +440,21 @@ h1, h2, h3, p { margin: 0; }
   color: var(--text);
 }
 
-.about-logo {
-  height: 34px;
-  width: auto;
-  object-fit: contain;
+.about-logo-wrap {
+  width: 185px;
+  height: 48px;
   margin: 46px auto 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0.85;
+}
+.about-logo {
+  width: 185px;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* ==========================================================================
@@ -828,6 +837,9 @@ h1, h2, h3, p { margin: 0; }
   .about-body br.br-pc,
   .section-sub br.br-pc,
   .hero-desc br.br-pc { display: none; }
+
+  .about-logo-wrap { width: 150px; height: 40px; }
+  .about-logo { width: 150px; height: auto; }
 
   .product-grid { grid-template-columns: 1fr; gap: 20px; }
   .cso-grid { grid-template-columns: 1fr; gap: 16px; }
