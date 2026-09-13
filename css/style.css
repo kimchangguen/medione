@@ -222,8 +222,8 @@ h1, h2, h3, p { margin: 0; }
 
 .brand { display: flex; align-items: center; flex-shrink: 0; }
 .brand-logo {
-  width: 155px;
-  height: auto;
+  height: 42px;
+  width: auto;
   object-fit: contain;
   display: block;
 }
@@ -441,8 +441,8 @@ h1, h2, h3, p { margin: 0; }
 }
 
 .about-logo-wrap {
-  width: 185px;
-  height: 48px;
+  width: 220px;
+  height: 58px;
   margin: 46px auto 0;
   overflow: hidden;
   display: flex;
@@ -451,7 +451,7 @@ h1, h2, h3, p { margin: 0; }
   opacity: 0.85;
 }
 .about-logo {
-  width: 185px;
+  width: 220px;
   height: auto;
   object-fit: contain;
   display: block;
@@ -720,7 +720,7 @@ h1, h2, h3, p { margin: 0; }
   gap: 32px;
 }
 .bottom-cta-logo {
-  height: 40px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -849,7 +849,7 @@ h1, h2, h3, p { margin: 0; }
   .section-title { font-size: 30px; }
   .section-sub { font-size: 15.5px; }
 
-  .brand-logo { width: 125px; height: auto; }
+  .brand-logo { height: 34px; width: auto; }
 
   .hero {
     min-height: 720px;
@@ -870,8 +870,8 @@ h1, h2, h3, p { margin: 0; }
   .section-sub br.br-pc,
   .hero-desc br.br-pc { display: none; }
 
-  .about-logo-wrap { width: 150px; height: 40px; }
-  .about-logo { width: 150px; height: auto; }
+  .about-logo-wrap { width: 180px; height: 46px; }
+  .about-logo { width: 180px; height: auto; }
 
   .product-grid { grid-template-columns: 1fr; gap: 20px; }
   .cso-grid { grid-template-columns: 1fr; gap: 16px; }
