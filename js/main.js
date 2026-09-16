@@ -2,25 +2,101 @@
   "use strict";
 
   /* ------------------------------------------------------------------
-   * Data — swap image paths here once real product photos are added.
-   * A missing/broken image path automatically falls back to a
-   * gradient placeholder (see renderProducts).
+   * Data — one card per manufacturer/partner company, grouped from the
+   * product source material (public/product-source/). `href` is kept as
+   * null on purpose: there are no detail pages yet, but the field lets a
+   * future page be wired in without touching the render logic.
    * ------------------------------------------------------------------ */
-  var products = [
+  var productPartners = [
     {
-      title: "급여 스프린트",
-      image: "images/products/product-splint.jpg",
-      desc: "안정적인 고정과 치료를 위한 의료용 스프린트"
+      id: "woosam-medical",
+      company: "우삼의료기(주)",
+      category: "MEDICAL DEVICE PARTNER",
+      image: "images/products/woosam.webp",
+      imageFit: "contain",
+      products: ["GIPS123", "NEW YOGIPS", "POCKET YOGIPS"],
+      href: null
     },
     {
-      title: "급여 압박밴드",
-      image: "images/products/product-band.jpg",
-      desc: "일상과 의료현장에서 활용되는 전문 압박 제품"
+      id: "miraemedical",
+      company: "미래메디칼",
+      category: "MEDICAL DEVICE PARTNER",
+      image: "images/products/miraemedical.webp",
+      imageFit: "cover",
+      products: ["GIPSHOE Splint"],
+      href: null
     },
     {
-      title: "주사제",
-      image: "images/products/product-injection.jpg",
-      desc: "의료기관을 위한 전문 의약품 공급"
+      id: "emtech",
+      company: "이엠텍",
+      category: "MEDICAL DEVICE PARTNER",
+      image: "images/products/qplint.webp",
+      imageFit: "cover",
+      products: ["Qplint"],
+      href: null
+    },
+    {
+      id: "drfrog",
+      company: "Dr.FROG",
+      category: "MEDICAL DEVICE PARTNER",
+      image: "images/products/drfrog.webp",
+      imageFit: "contain",
+      products: ["Dr.FROG 손가락 보조기"],
+      href: null
+    },
+    {
+      id: "rtbio",
+      company: "알티바이오",
+      category: "MEDICAL DEVICE PARTNER",
+      image: "images/products/rtbio.webp",
+      imageFit: "cover",
+      products: ["RESPLINT", "RESPLINT CYLINDER", "RECOTAP PLUS", "RT NEO"],
+      href: null
+    },
+    {
+      id: "baros-medical",
+      company: "바로스메디칼",
+      category: "MEDICAL DEVICE PARTNER",
+      image: "images/products/barosmedical.webp",
+      imageFit: "contain",
+      products: ["BAROWELLFIT"],
+      href: null
+    },
+    {
+      id: "donghae-medical",
+      company: "동해메디칼(주)",
+      category: "MEDICAL DEVICE PARTNER",
+      image: "images/products/donghae-medical.webp",
+      imageFit: "contain",
+      products: ["TONG CAST"],
+      href: null
+    },
+    {
+      id: "litepharmtech",
+      company: "(주)라이트팜텍",
+      category: "PHARMACEUTICAL PARTNER",
+      image: "images/products/litepharmtech.webp",
+      imageFit: "cover",
+      products: ["카틸란(Cartilan)"],
+      href: null
+    },
+    {
+      id: "pharmaresearch",
+      company: "파마리서치",
+      category: "PHARMACEUTICAL PARTNER",
+      image: "images/products/pharmaresearch.webp",
+      imageFit: "cover",
+      products: ["콘쥬란(Conjuran)"],
+      href: null
+    },
+    {
+      id: "dongkook-pharm",
+      company: "동국제약",
+      category: "PHARMACEUTICAL PARTNER",
+      image: "images/products/dongkook.webp",
+      imageFit: "contain",
+      products: ["아테본(Ateborn)", "히야론퍼스트(Hyaron First)"],
+      href: null
     }
   ];
 
@@ -82,25 +158,26 @@
     var grid = document.getElementById("productGrid");
     if (!grid) return;
 
-    products.forEach(function (p) {
+    productPartners.forEach(function (partner, index) {
       var card = document.createElement("article");
       card.className = "product-card reveal";
+      card.setAttribute("data-partner", partner.id);
 
       var media = document.createElement("div");
-      media.className = "product-media no-image";
+      media.className = "product-media product-media-" + partner.imageFit;
 
-      var probe = new Image();
-      probe.onload = function () {
-        media.classList.remove("no-image");
-        media.style.backgroundImage = 'url("' + p.image + '")';
-      };
-      probe.src = p.image;
+      var img = document.createElement("img");
+      img.src = partner.image;
+      img.alt = partner.company + " 대표 제품 이미지";
+      img.loading = index < 3 ? "eager" : "lazy";
+      media.appendChild(img);
 
       var body = document.createElement("div");
       body.className = "product-body";
       body.innerHTML =
-        '<h3 class="product-name">' + p.title + '</h3>' +
-        '<p class="product-desc">' + p.desc + '</p>';
+        '<span class="product-category">' + partner.category + '</span>' +
+        '<h3 class="product-company">' + partner.company + '</h3>' +
+        '<p class="product-list">' + partner.products.join(" · ") + '</p>';
 
       card.appendChild(media);
       card.appendChild(body);
