@@ -633,50 +633,92 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* ==========================================================================
-   CSO GRID
+   CSO RECRUITMENT — pinned scroll card spread
+
+   Same track+sticky pattern as ABOUT (see .about-scroll-track): a tall
+   track spends scroll distance while .cso-sticky-stage stays pinned.
+   Five placeholder cards start gathered near center and fan out to their
+   final X/Y/rotation/scale as js/cso-scroll.js drives scroll progress
+   through this track. Card content stays empty on purpose — see
+   .cso-card-media / .cso-card-content.
    ========================================================================== */
-.cso-grid {
-  margin-top: 56px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+.cso-section {
+  position: relative;
+  background: var(--white);
+}
+
+.cso-scroll-track {
+  position: relative;
+  height: 240vh;
+}
+
+.cso-sticky-stage {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px var(--pad-pc) 0;
+}
+
+.cso-heading {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+}
+
+.cso-heading-title {
+  margin-top: 14px;
+  font-size: clamp(40px, 3.4vw, 50px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--navy);
+  line-height: 1.2;
+}
+
+.cso-heading-sub {
+  margin-top: 16px;
+  font-size: clamp(18px, 1.2vw, 20px);
+  line-height: 1.7;
+  color: #526D85;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cso-cards-stage {
+  position: relative;
+  width: min(92vw, 1380px);
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .cso-card {
-  background: var(--bg-alt-1);
-  border-radius: 20px;
-  padding: 34px 24px;
-  text-align: center;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-.cso-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-soft);
-}
-
-.cso-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 18px;
-  border-radius: 16px;
-  background: var(--blue-light);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 250px;
+  height: 370px;
+  border-radius: 22px;
+  background: #F4F9FD;
+  border: 1px solid rgba(13, 103, 200, 0.10);
+  box-shadow: 0 18px 45px rgba(20, 70, 110, 0.08);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blue);
+  flex-direction: column;
+  overflow: hidden;
+  will-change: transform, opacity;
 }
-.cso-icon svg { width: 28px; height: 28px; }
 
-.cso-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--navy);
-}
-.cso-desc {
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--text-sub);
-  line-height: 1.6;
+.cso-card-media { flex: 1 1 auto; }
+.cso-card-content { flex: 0 0 auto; }
+
+.cso-cta-row {
+  padding: 48px var(--pad-pc) 110px;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -936,7 +978,6 @@ h1, h2, h3, p { margin: 0; }
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .cso-grid { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-title { font-size: 46px; }
   .support-grid { gap: 20px; }
@@ -948,6 +989,9 @@ h1, h2, h3, p { margin: 0; }
   .about-image-02 { width: 175px; height: 220px; }
   .about-image-03 { width: 160px; height: 200px; left: 4px; }
   .about-image-04 { width: 205px; height: 135px; right: 0; }
+
+  .cso-cards-stage { width: min(90vw, 1380px); }
+  .cso-card { width: 195px; height: 290px; border-radius: 20px; }
 }
 
 @media (max-width: 900px) {
@@ -988,6 +1032,7 @@ h1, h2, h3, p { margin: 0; }
 
   .about-body-block br.br-pc,
   .section-sub br.br-pc,
+  .cso-heading-sub br.br-pc,
   .hero-desc br.br-pc { display: none; }
 
   .about-scroll-track { height: 400vh; }
@@ -1003,7 +1048,13 @@ h1, h2, h3, p { margin: 0; }
   .about-image-04 { width: 100px; height: 68px; right: -4px; bottom: 6%; }
 
   .product-grid { grid-template-columns: 1fr; gap: 20px; }
-  .cso-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .cso-sticky-stage { padding-top: 32px; }
+  .cso-heading-title { font-size: 30px; margin-top: 10px; }
+  .cso-heading-sub { font-size: 15.5px; }
+  .cso-cards-stage { width: min(94vw, 1380px); }
+  .cso-card { width: 160px; height: 238px; border-radius: 18px; }
+
   .support-grid { flex-direction: column; align-items: center; }
   .support-card { width: 100%; max-width: 320px; }
 
@@ -1029,5 +1080,5 @@ h1, h2, h3, p { margin: 0; }
 
 @media (max-width: 420px) {
   .hero-title { font-size: 32px; }
-  .cso-card { padding: 28px 18px; }
+  .cso-card { width: 145px; height: 216px; border-radius: 16px; }
 }
