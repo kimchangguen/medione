@@ -31,7 +31,7 @@
       company: "이엠텍",
       category: "MEDICAL DEVICE PARTNER",
       image: "images/products/qplint.webp",
-      imageFit: "cover",
+      imageFit: "contain",
       products: ["Qplint"],
       href: null
     },
