@@ -4,27 +4,36 @@
  * The section is a tall "track" with a `position: sticky` stage inside it.
  * As the user scrolls through the track, we read the stage's current
  * position via getBoundingClientRect() (no wheel/preventDefault hijacking)
- * and derive a 0..1 progress value. Each content step becomes visible once
- * progress crosses its threshold, and CSS transitions handle the fade/move.
+ * and derive a 0..1 progress value.
+ *
+ * Two reveal styles share that progress value:
+ *  - The opening trio (eyebrow/title/subtitle) plus the first image
+ *    placeholder play once, fast, as a timed stagger the moment the
+ *    section becomes pinned — they are NOT gated by further scroll
+ *    distance. The stagger itself lives in each element's CSS
+ *    transition-delay (see .about-start-el / .about-image-01 in
+ *    style.css); this file only flips a single `is-active` class for
+ *    all of them at once.
+ *  - Everything else (body copy, slogan, logo, the other three images)
+ *    is gated by scroll-progress thresholds, cumulative and reversible.
  * Because progress is recomputed from live layout on every frame, scrolling
- * up reverses the sequence and a mid-page refresh resolves to the correct
- * state automatically.
+ * up reverses the scroll-gated half and a mid-page refresh resolves to the
+ * correct state immediately (no replaying the opening stagger).
  */
 (function () {
   "use strict";
 
-  var STEP_THRESHOLDS = {
-    eyebrow: 0.03,
-    title: 0.10,
-    subtitle: 0.18,
-    image01: 0.27,
-    image02: 0.35,
-    body1: 0.43,
-    image03: 0.54,
-    image04: 0.62,
-    body2: 0.70,
-    final: 0.81,
-    logo: 0.90
+  var START_STEPS = ["eyebrow", "title", "subtitle"];
+  var START_IMMEDIATE_EPSILON = 0.03;
+
+  var SCROLL_THRESHOLDS = {
+    body1: 0.14,
+    image02: 0.14,
+    body2: 0.36,
+    image03: 0.36,
+    final: 0.58,
+    image04: 0.58,
+    logo: 0.78
   };
 
   function initAboutScrollStory() {
@@ -32,19 +41,45 @@
     var stage = document.querySelector(".about-sticky-stage");
     if (!track || !stage) return;
 
-    var steps = Array.prototype.slice
-      .call(track.querySelectorAll("[data-about-step]"))
-      .map(function (el) {
-        return { el: el, threshold: STEP_THRESHOLDS[el.getAttribute("data-about-step")] || 0 };
-      });
+    function findStep(step) {
+      return track.querySelector('[data-about-step="' + step + '"]');
+    }
+
+    var allEls = Array.prototype.slice.call(track.querySelectorAll("[data-about-step]"));
+
+    var scrollSteps = Object.keys(SCROLL_THRESHOLDS)
+      .map(function (step) {
+        return { el: findStep(step), threshold: SCROLL_THRESHOLDS[step] };
+      })
+      .filter(function (s) { return s.el; });
+
+    var startEls = START_STEPS.map(findStep).filter(Boolean);
+    var image01 = track.querySelector(".about-image-01");
+    if (image01) startEls.push(image01);
 
     var prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     if (prefersReducedMotion) {
-      steps.forEach(function (step) { step.el.classList.add("is-active"); });
+      allEls.forEach(function (el) { el.classList.add("is-active"); });
       return;
+    }
+
+    var startPlayed = false;
+
+    function playStart(progress) {
+      if (startPlayed) return;
+      startPlayed = true;
+
+      // Landed mid-track already (deep link, mid-scroll refresh) — skip the
+      // delayed stagger so content doesn't pop in late on top of scrolled
+      // content the user can already see.
+      var instant = progress > START_IMMEDIATE_EPSILON;
+      startEls.forEach(function (el) {
+        if (instant) el.style.transitionDelay = "0s";
+        el.classList.add("is-active");
+      });
     }
 
     function getHeaderHeight() {
@@ -60,7 +95,8 @@
 
       var scrollRange = track.offsetHeight - stage.offsetHeight;
       if (scrollRange <= 0) {
-        steps.forEach(function (step) { step.el.classList.add("is-active"); });
+        playStart(1);
+        scrollSteps.forEach(function (step) { step.el.classList.add("is-active"); });
         return;
       }
 
@@ -68,7 +104,11 @@
       var progress = (getHeaderHeight() - rectTop) / scrollRange;
       progress = Math.min(1, Math.max(0, progress));
 
-      steps.forEach(function (step) {
+      if (progress > 0) {
+        playStart(progress);
+      }
+
+      scrollSteps.forEach(function (step) {
         step.el.classList.toggle("is-active", progress >= step.threshold);
       });
     }

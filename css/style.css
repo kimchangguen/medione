@@ -428,7 +428,7 @@ h1, h2, h3, p { margin: 0; }
 /* Tall track that "spends" scroll distance while the stage stays pinned. */
 .about-scroll-track {
   position: relative;
-  height: 450vh;
+  height: 400vh;
 }
 
 /* The pinned viewport. Sits right under the sticky header. */
@@ -473,15 +473,32 @@ h1, h2, h3, p { margin: 0; }
   z-index: 5;
 }
 
+/* Cumulative scroll-gated reveal (body copy, slogan, logo) — calmer, slower,
+   fully reversible as the user scrolls back up through the track. */
 .about-el {
   opacity: 0;
   transform: translateY(24px) scale(0.97);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 }
 .about-el.is-active {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+/* Opening sequence (eyebrow / title / subtitle) — fast auto-playing stagger
+   fired once on entry, decoupled from further scroll distance. The stagger
+   itself lives in transition-delay below, not in JS timers. */
+.about-start-el {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.about-start-el.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-about-step="title"].about-start-el { transition-delay: 0.15s; }
+[data-about-step="subtitle"].about-start-el { transition-delay: 0.3s; }
 
 .about-body-block {
   margin-top: 22px;
@@ -511,6 +528,14 @@ h1, h2, h3, p { margin: 0; }
   align-items: center;
   justify-content: center;
 }
+/* Final scene of the storytelling — its own transform recipe/duration. */
+.about-logo-wrap.about-el {
+  transition-duration: 0.5s;
+  transform: translateY(15px) scale(0.96);
+}
+.about-logo-wrap.about-el.is-active {
+  transform: translateY(0) scale(1);
+}
 .about-logo {
   width: 220px;
   height: auto;
@@ -530,12 +555,15 @@ h1, h2, h3, p { margin: 0; }
 }
 .about-image-frame.is-active { opacity: 1; }
 
+/* Rides the tail of the opening stagger (see .about-start-el) instead of a
+   scroll threshold — appears right as START completes. */
 .about-image-01 {
   left: 0;
   top: 10%;
   width: 230px;
   height: 150px;
   transform: translate(-45px, -15px) scale(0.94);
+  transition-delay: 0.42s;
 }
 .about-image-01.is-active { transform: translate(0, 0) scale(1); }
 
@@ -983,7 +1011,7 @@ h1, h2, h3, p { margin: 0; }
   .support-grid { gap: 20px; }
   .support-card { width: 220px; }
 
-  .about-scroll-track { height: 420vh; }
+  .about-scroll-track { height: 360vh; }
   .about-center-wrapper { width: min(560px, 82vw); }
   .about-image-01 { width: 190px; height: 130px; }
   .about-image-02 { width: 175px; height: 220px; }
@@ -1035,7 +1063,7 @@ h1, h2, h3, p { margin: 0; }
   .cso-heading-sub br.br-pc,
   .hero-desc br.br-pc { display: none; }
 
-  .about-scroll-track { height: 400vh; }
+  .about-scroll-track { height: 340vh; }
   .about-center-wrapper { width: 90vw; }
   .about-final-message { font-size: 17.5px; margin-top: 22px; }
   .about-logo-wrap { width: 170px; height: 44px; margin-top: 20px; }
