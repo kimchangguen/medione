@@ -633,50 +633,69 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* ==========================================================================
-   CSO GRID
+   CSO RECRUITMENT — pinned scroll card spread
    ========================================================================== */
-.cso-grid {
-  margin-top: 56px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+.cso-scroll-track {
+  position: relative;
+  height: 230vh;
+}
+
+.cso-sticky-stage {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cso-heading {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+  flex-shrink: 0;
+}
+
+.cso-cards-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 420px;
+  margin-top: 36px;
+  flex-shrink: 0;
 }
 
 .cso-card {
-  background: var(--bg-alt-1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 250px;
+  height: 370px;
   border-radius: 20px;
-  padding: 34px 24px;
-  text-align: center;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-.cso-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-soft);
-}
-
-.cso-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 18px;
-  border-radius: 16px;
-  background: var(--blue-light);
+  background: #F4F9FD;
+  border: 1px solid rgba(13, 103, 200, 0.10);
+  box-shadow: 0 18px 45px rgba(20, 70, 110, 0.08);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blue);
+  flex-direction: column;
+  overflow: hidden;
+  transform-origin: center bottom;
 }
-.cso-icon svg { width: 28px; height: 28px; }
 
-.cso-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--navy);
+.cso-card-media {
+  flex: 0 0 62%;
+  border-radius: 20px 20px 0 0;
 }
-.cso-desc {
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--text-sub);
-  line-height: 1.6;
+.cso-card-content {
+  flex: 1;
+}
+
+.cso-cta-band {
+  background: var(--white);
+  padding: 0 0 90px;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -948,6 +967,9 @@ h1, h2, h3, p { margin: 0; }
   .about-image-02 { width: 175px; height: 220px; }
   .about-image-03 { width: 160px; height: 200px; left: 4px; }
   .about-image-04 { width: 205px; height: 135px; right: 0; }
+
+  .cso-cards-stage { max-width: 90%; height: 340px; }
+  .cso-card { width: 200px; height: 300px; }
 }
 
 @media (max-width: 900px) {
@@ -1001,6 +1023,12 @@ h1, h2, h3, p { margin: 0; }
   .about-image-02 { width: 84px; height: 108px; right: -6px; top: 4%; }
   .about-image-03 { width: 78px; height: 96px; left: -4px; bottom: 4%; }
   .about-image-04 { width: 100px; height: 68px; right: -4px; bottom: 6%; }
+
+  .cso-scroll-track { height: 260vh; }
+  .cso-cards-stage { max-width: 100%; height: 280px; margin-top: 24px; }
+  .cso-card { width: 155px; height: 230px; border-radius: 16px; }
+  .cso-card-media { border-radius: 16px 16px 0 0; }
+  .cso-cta-band { padding-bottom: 64px; }
 
   .product-grid { grid-template-columns: 1fr; gap: 20px; }
   .cso-grid { grid-template-columns: 1fr; gap: 16px; }
