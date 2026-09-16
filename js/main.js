@@ -100,6 +100,29 @@
     }
   ];
 
+  var csoItems = [
+    {
+      title: "CSO 파트너 모집",
+      desc: "개인 또는 팀 단위의 영업 파트너",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
+    },
+    {
+      title: "의료 영업 경험",
+      desc: "의료기기 및 의약품 영업 경험자 우대",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8.3 13 14l-3-3-4.7 4.7"/></svg>'
+    },
+    {
+      title: "파트너 수익",
+      desc: "협의를 통한 지속 가능한 수익 구조",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94Z"/></svg>'
+    },
+    {
+      title: "장기 협력",
+      desc: "함께 성장하는 파트너십 지향",
+      icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>'
+    }
+  ];
+
   var supportItems = [
     {
       title: "제품 관련 정보 전달",
@@ -158,6 +181,21 @@
 
       card.appendChild(media);
       card.appendChild(body);
+      grid.appendChild(card);
+    });
+  }
+
+  function renderCso() {
+    var grid = document.getElementById("csoGrid");
+    if (!grid) return;
+
+    csoItems.forEach(function (item) {
+      var card = document.createElement("div");
+      card.className = "cso-card reveal";
+      card.innerHTML =
+        '<div class="cso-icon">' + item.icon + '</div>' +
+        '<h3 class="cso-title">' + item.title + '</h3>' +
+        '<p class="cso-desc">' + item.desc + '</p>';
       grid.appendChild(card);
     });
   }
@@ -312,6 +350,7 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     renderProducts();
+    renderCso();
     renderSupport();
     renderWhy();
     initHeaderScroll();
