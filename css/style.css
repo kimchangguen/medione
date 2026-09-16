@@ -23,6 +23,7 @@
   --max-width: 1240px;
   --pad-pc: 24px;
   --pad-mobile: 20px;
+  --header-height: 84px;
 
   --radius-lg: 26px;
   --radius-md: 20px;
@@ -199,7 +200,7 @@ h1, h2, h3, p { margin: 0; }
   top: 0;
   z-index: 1000;
   background: var(--white);
-  height: 84px;
+  height: var(--header-height);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -292,7 +293,7 @@ h1, h2, h3, p { margin: 0; }
 .mobile-nav {
   display: none;
   position: fixed;
-  top: 84px;
+  top: var(--header-height);
   left: 0;
   right: 0;
   background: var(--white);
@@ -421,8 +422,27 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* ==========================================================================
-   ABOUT
+   ABOUT — pinned scroll storytelling
    ========================================================================== */
+
+/* Tall track that "spends" scroll distance while the stage stays pinned. */
+.about-scroll-track {
+  position: relative;
+  height: 450vh;
+}
+
+/* The pinned viewport. Sits right under the sticky header. */
+.about-sticky-stage {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .about-background-visual {
   position: absolute;
   inset: 0;
@@ -430,9 +450,42 @@ h1, h2, h3, p { margin: 0; }
   background: radial-gradient(600px 300px at 50% 0%, rgba(13, 103, 200, 0.04), transparent 70%);
 }
 
-.about-body {
-  margin-top: 30px;
-  max-width: 740px;
+/* Reference frame for the image placeholders — matches the site container
+   so their offsets scale the same way the rest of the layout does. */
+.about-stage-inner {
+  position: absolute;
+  inset: 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--pad-pc);
+  pointer-events: none;
+}
+
+/* ---------- Center text column ---------- */
+.about-center-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(720px, 88vw);
+  max-width: 720px;
+  text-align: center;
+  z-index: 5;
+}
+
+.about-el {
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.about-el.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.about-body-block {
+  margin-top: 22px;
+  max-width: 620px;
   margin-left: auto;
   margin-right: auto;
   font-size: 16.5px;
@@ -440,15 +493,23 @@ h1, h2, h3, p { margin: 0; }
   color: var(--text);
 }
 
+.about-final-message {
+  margin-top: 28px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+  color: var(--navy);
+}
+
 .about-logo-wrap {
   width: 220px;
   height: 58px;
-  margin: 46px auto 0;
+  margin: 26px auto 0;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.85;
 }
 .about-logo {
   width: 220px;
@@ -456,6 +517,54 @@ h1, h2, h3, p { margin: 0; }
   object-fit: contain;
   display: block;
 }
+
+/* ---------- Image placeholders ---------- */
+.about-image-frame {
+  position: absolute;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #F5FAFF 0%, #EAF5FF 100%);
+  border: 1px solid rgba(13, 103, 200, 0.12);
+  box-shadow: 0 20px 50px rgba(7, 59, 117, 0.08);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.about-image-frame.is-active { opacity: 1; }
+
+.about-image-01 {
+  left: 0;
+  top: 10%;
+  width: 230px;
+  height: 150px;
+  transform: translate(-45px, -15px) scale(0.94);
+}
+.about-image-01.is-active { transform: translate(0, 0) scale(1); }
+
+.about-image-02 {
+  right: 0;
+  top: 4%;
+  width: 210px;
+  height: 270px;
+  transform: translate(45px, -15px) scale(0.94);
+}
+.about-image-02.is-active { transform: translate(0, 0) scale(1); }
+
+.about-image-03 {
+  left: 24px;
+  bottom: 4%;
+  width: 190px;
+  height: 240px;
+  transform: translate(-40px, 25px);
+}
+.about-image-03.is-active { transform: translate(0, 0); }
+
+.about-image-04 {
+  right: 14px;
+  bottom: 8%;
+  width: 250px;
+  height: 160px;
+  transform: translate(40px, 25px);
+}
+.about-image-04.is-active { transform: translate(0, 0); }
 
 /* ==========================================================================
    PRODUCTS
@@ -828,6 +937,13 @@ h1, h2, h3, p { margin: 0; }
   .hero-title { font-size: 46px; }
   .support-grid { gap: 20px; }
   .support-card { width: 220px; }
+
+  .about-scroll-track { height: 420vh; }
+  .about-center-wrapper { width: min(560px, 82vw); }
+  .about-image-01 { width: 190px; height: 130px; }
+  .about-image-02 { width: 175px; height: 220px; }
+  .about-image-03 { width: 160px; height: 200px; left: 4px; }
+  .about-image-04 { width: 205px; height: 135px; right: 0; }
 }
 
 @media (max-width: 900px) {
@@ -866,12 +982,21 @@ h1, h2, h3, p { margin: 0; }
   .hero-desc { font-size: 15.5px; }
   .hero-cta { width: 100%; max-width: 320px; height: 58px; }
 
-  .about-body br.br-pc,
+  .about-body-block br.br-pc,
   .section-sub br.br-pc,
   .hero-desc br.br-pc { display: none; }
 
-  .about-logo-wrap { width: 180px; height: 46px; }
-  .about-logo { width: 180px; height: auto; }
+  .about-scroll-track { height: 400vh; }
+  .about-center-wrapper { width: 90vw; }
+  .about-final-message { font-size: 17.5px; margin-top: 22px; }
+  .about-logo-wrap { width: 170px; height: 44px; margin-top: 20px; }
+  .about-logo { width: 170px; height: auto; }
+
+  .about-image-frame { border-radius: 16px; }
+  .about-image-01 { width: 92px; height: 64px; left: -6px; top: 6%; }
+  .about-image-02 { width: 84px; height: 108px; right: -6px; top: 4%; }
+  .about-image-03 { width: 78px; height: 96px; left: -4px; bottom: 4%; }
+  .about-image-04 { width: 100px; height: 68px; right: -4px; bottom: 6%; }
 
   .product-grid { grid-template-columns: 1fr; gap: 20px; }
   .cso-grid { grid-template-columns: 1fr; gap: 16px; }

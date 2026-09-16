@@ -98,25 +98,47 @@
   </div>
 </section>
 
-<!-- ===================== ABOUT ===================== -->
-<section class="section section-white" id="about">
-  <div class="about-background-visual" aria-hidden="true"></div>
-  <div class="container">
-    <p class="eyebrow reveal">ABOUT MEDIONE PHARM</p>
-    <h2 class="section-title reveal">(주) 메디원팜은</h2>
-    <p class="section-sub reveal">의료기기와 의약품을 전문적으로 유통하는 총판 기업입니다.</p>
+<!-- ===================== ABOUT (pinned scroll storytelling) ===================== -->
+<section class="about-scroll-track" id="about">
+  <div class="about-sticky-stage">
+    <div class="about-background-visual" aria-hidden="true"></div>
 
-    <p class="about-body reveal">
-      메디원팜은 의료기기 및 의약품 제조사와의 전문적인 파트너십을 통해<br class="br-pc">
-      제품을 의료현장과 거래처에 안정적으로 공급하고 있습니다.
-      <br><br>
-      내부 영업조직과 외부 CSO 파트너가 함께 협력하며,<br class="br-pc">
-      제품의 가치를 의료현장에 정확하게 전달하고<br class="br-pc">
-      지속 가능한 영업 네트워크를 구축하고 있습니다.
-    </p>
+    <div class="about-stage-inner" aria-hidden="true">
+      <!-- about-image-01 -->
+      <div class="about-image-frame about-image-01" data-about-step="image01"></div>
+      <!-- about-image-02 -->
+      <div class="about-image-frame about-image-02" data-about-step="image02"></div>
+      <!-- about-image-03 -->
+      <div class="about-image-frame about-image-03" data-about-step="image03"></div>
+      <!-- about-image-04 -->
+      <div class="about-image-frame about-image-04" data-about-step="image04"></div>
+    </div>
 
-    <div class="about-logo-wrap reveal">
-      <img src="images/logo-wordmark.png" alt="메디원팜 로고" class="about-logo">
+    <div class="about-center-wrapper">
+      <div class="about-center-content">
+        <p class="eyebrow about-el" data-about-step="eyebrow">ABOUT MEDIONE PHARM</p>
+        <h2 class="section-title about-el" data-about-step="title">(주) 메디원팜은</h2>
+        <p class="section-sub about-el" data-about-step="subtitle">의료기기와 의약품을 전문적으로 유통하는 총판 기업입니다.</p>
+
+        <p class="about-body-block about-el" data-about-step="body1">
+          메디원팜은 의료기기 및 의약품 제조사와의 전문적인 파트너십을 통해<br class="br-pc">
+          제품을 의료현장과 거래처에 안정적으로 공급하고 있습니다.
+        </p>
+
+        <p class="about-body-block about-el" data-about-step="body2">
+          내부 영업조직과 외부 CSO 파트너가 함께 협력하며,<br class="br-pc">
+          제품의 가치를 의료현장에 정확하게 전달하고<br class="br-pc">
+          지속 가능한 영업 네트워크를 구축하고 있습니다.
+        </p>
+
+        <p class="about-final-message about-el" data-about-step="final">
+          의료의 가치를 연결하고,<br>파트너와 함께 성장합니다.
+        </p>
+
+        <div class="about-logo-wrap about-el" data-about-step="logo">
+          <img src="images/logo-wordmark.png" alt="메디원팜 로고" class="about-logo">
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -261,6 +283,7 @@
   </div>
 </footer>
 
+<script src="js/about-scroll.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
