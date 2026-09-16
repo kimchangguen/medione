@@ -750,77 +750,140 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* ==========================================================================
-   PARTNER SUPPORT
+   WHY MEDIONE / PARTNER SUPPORT — pinned step story
+
+   Same track+sticky pattern as about-scroll.js/cso-scroll.js: a tall track
+   spends scroll distance while .partner-story-sticky stays pinned. The
+   right-hand nav cards sit in fixed slots — only which one carries
+   .is-active changes — and the left main card crossfades its visual/text
+   in place (see js/partner-story.js) instead of being torn down.
    ========================================================================== */
-.support-grid {
-  margin-top: 56px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 26px;
+.partner-story-track {
+  position: relative;
+  height: 380vh;
 }
 
-.support-card {
-  width: 250px;
-  text-align: center;
-  padding: 8px 10px;
-}
-.support-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 1px solid var(--line);
+.partner-story-sticky {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  background: #F8FAFC;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  color: var(--blue);
-  box-shadow: var(--shadow-soft);
-}
-.support-icon svg { width: 26px; height: 26px; }
-.support-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.4;
 }
 
-/* ==========================================================================
-   WHY MEDIONE — pills
-   ========================================================================== */
-.why-pills {
-  margin-top: 52px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
+.partner-story-heading { flex-shrink: 0; }
+.partner-story-heading .section-title {
+  font-size: clamp(40px, 3.2vw, 50px);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
 }
+.partner-story-heading .section-sub { color: #5B7186; }
 
-.why-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #D7E7F6;
-  border-radius: 999px;
-  padding: 16px 26px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  background: var(--white);
-}
-.pill-check {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: #fff;
+.partner-story-layout {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 36px auto 0;
+  padding: 0 var(--pad-pc);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
   flex-shrink: 0;
 }
-.pill-check svg { width: 13px; height: 13px; }
+
+.partner-story-main {
+  flex: 0 0 76%;
+  max-width: 76%;
+  min-height: 440px;
+  background: var(--white);
+  border-radius: 26px;
+  border: 1px solid rgba(13, 103, 200, 0.07);
+  box-shadow: 0 15px 45px rgba(20, 70, 110, 0.05);
+  overflow: hidden;
+  display: flex;
+}
+
+.partner-story-visual {
+  flex: 0 0 40%;
+  position: relative;
+  background: linear-gradient(135deg, #F1F8FF 0%, #E9F3FF 100%);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.partner-story-visual.is-leaving { opacity: 0; transform: translateY(-12px); }
+.partner-story-visual.is-entering { opacity: 0; transform: translateY(18px); }
+
+.partner-story-text {
+  flex: 1;
+  padding: 48px 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.partner-story-text.is-leaving { opacity: 0; transform: translateY(-12px); }
+.partner-story-text.is-entering { opacity: 0; transform: translateY(18px); }
+
+.partner-story-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+.partner-story-title {
+  margin-top: 12px;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.partner-story-desc {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #526D85;
+  max-width: 480px;
+}
+
+.partner-story-nav {
+  flex: 0 0 22%;
+  max-width: 22%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.partner-nav-card {
+  width: 100%;
+  min-height: 66px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  background: #F3F6F9;
+  color: #94A0AC;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.partner-nav-card:hover {
+  background: #E9EEF3;
+  transform: translateX(-2px);
+}
+.partner-nav-card.is-active {
+  background: linear-gradient(135deg, #126FD3, #567AEF);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(13, 103, 200, 0.2);
+  transform: scale(1.02);
+}
+.partner-nav-card.is-active:hover { transform: scale(1.02); }
 
 /* ==========================================================================
    CONTACT
@@ -1008,8 +1071,26 @@ h1, h2, h3, p { margin: 0; }
 @media (max-width: 1024px) {
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-title { font-size: 46px; }
-  .support-grid { gap: 20px; }
-  .support-card { width: 220px; }
+
+  .partner-story-track { height: 430vh; }
+  .partner-story-sticky { padding: 16px 0; }
+  .partner-story-heading .section-title { font-size: clamp(26px, 3.4vw, 32px); }
+  .partner-story-heading .section-sub { font-size: 15px; margin-top: 10px; }
+  .partner-story-layout { flex-direction: column; margin-top: 18px; gap: 14px; }
+  .partner-story-main { max-width: 100%; flex: none; flex-direction: column; min-height: 0; }
+  .partner-story-visual { flex: 0 0 130px; }
+  .partner-story-text { padding: 20px 24px; }
+  .partner-story-label { font-size: 12px; }
+  .partner-story-title { font-size: 22px; margin-top: 8px; }
+  .partner-story-desc { font-size: 14px; line-height: 1.65; margin-top: 10px; }
+  .partner-story-nav {
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    gap: 8px;
+  }
+  .partner-nav-card { flex: 1 1 calc(50% - 4px); min-height: 48px; font-size: 13.5px; padding: 0 16px; }
 
   .about-scroll-track { height: 360vh; }
   .about-center-wrapper { width: min(560px, 82vw); }
@@ -1083,11 +1164,19 @@ h1, h2, h3, p { margin: 0; }
   .cso-cards-stage { width: min(94vw, 1380px); }
   .cso-card { width: 160px; height: 238px; border-radius: 18px; }
 
-  .support-grid { flex-direction: column; align-items: center; }
-  .support-card { width: 100%; max-width: 320px; }
-
-  .why-pills { flex-direction: column; align-items: stretch; }
-  .why-pill { justify-content: center; }
+  .partner-story-track { height: 480vh; }
+  .partner-story-sticky { padding: 12px 0; }
+  .partner-story-heading .section-title { font-size: 22px; }
+  .partner-story-heading .section-sub { font-size: 13.5px; margin-top: 8px; }
+  .partner-story-layout { margin-top: 14px; gap: 12px; }
+  .partner-story-main { border-radius: 18px; }
+  .partner-story-visual { flex-basis: 84px; }
+  .partner-story-text { padding: 16px 18px; }
+  .partner-story-label { font-size: 11.5px; }
+  .partner-story-title { font-size: 18px; margin-top: 6px; }
+  .partner-story-desc { font-size: 12.5px; line-height: 1.6; margin-top: 8px; max-width: none; }
+  .partner-story-nav { grid-template-columns: repeat(2, 1fr); display: grid; gap: 8px; }
+  .partner-nav-card { flex: none; min-height: 44px; font-size: 12px; padding: 0 12px; }
 
   .address-card { flex-direction: column; align-items: stretch; padding: 26px 22px; }
   .address-card-left { text-align: left; }
@@ -1109,4 +1198,33 @@ h1, h2, h3, p { margin: 0; }
 @media (max-width: 420px) {
   .hero-title { font-size: 32px; }
   .cso-card { width: 145px; height: 216px; border-radius: 16px; }
+}
+
+/* Short desktop/laptop viewports (e.g. common 1366x768 screens) — the
+   side-by-side layout has plenty of horizontal room, but not enough
+   vertical room for the full-size heading + 440px main card without
+   the sticky stage's overflow:hidden clipping it. */
+@media (min-width: 1025px) and (max-height: 820px) {
+  .partner-story-heading .section-title { font-size: clamp(28px, 2.6vw, 36px); }
+  .partner-story-heading .section-sub { font-size: 15px; margin-top: 10px; }
+  .partner-story-layout { margin-top: 20px; }
+  .partner-story-main { min-height: 340px; }
+  .partner-story-text { padding: 30px 34px; }
+  .partner-story-label { font-size: 12px; }
+  .partner-story-title { font-size: 24px; margin-top: 8px; }
+  .partner-story-desc { font-size: 14px; line-height: 1.65; margin-top: 10px; }
+  .partner-nav-card { min-height: 52px; }
+}
+
+/* Same safety net for the stacked tablet/mobile layout on an unusually
+   short window (e.g. a resized browser rather than a real device). */
+@media (max-width: 1024px) and (max-height: 760px) {
+  .partner-story-sticky { padding: 8px 0; }
+  .partner-story-heading .section-sub { display: none; }
+  .partner-story-layout { margin-top: 10px; gap: 8px; }
+  .partner-story-visual { flex-basis: 64px; }
+  .partner-story-text { padding: 12px 16px; }
+  .partner-story-title { font-size: 16px; margin-top: 4px; }
+  .partner-story-desc { -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; margin-top: 4px; }
+  .partner-nav-card { min-height: 38px; }
 }
