@@ -61,11 +61,6 @@
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (prefersReducedMotion) {
-      allEls.forEach(function (el) { el.classList.add("is-active"); });
-      return;
-    }
-
     var startPlayed = false;
 
     function playStart(progress) {
@@ -74,8 +69,11 @@
 
       // Landed mid-track already (deep link, mid-scroll refresh) — skip the
       // delayed stagger so content doesn't pop in late on top of scrolled
-      // content the user can already see.
-      var instant = progress > START_IMMEDIATE_EPSILON;
+      // content the user can already see. Reduced motion: skip the staggered
+      // opening delay entirely (fade in together) but keep the section's
+      // scroll-driven reveal fully interactive — "reduce" motion here, don't
+      // remove the storytelling itself.
+      var instant = prefersReducedMotion || progress > START_IMMEDIATE_EPSILON;
       startEls.forEach(function (el) {
         if (instant) el.style.transitionDelay = "0s";
         el.classList.add("is-active");

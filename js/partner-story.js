@@ -110,7 +110,7 @@
       btn.setAttribute("data-step", step.id);
       btn.setAttribute("aria-current", i === 0 ? "true" : "false");
       btn.textContent = step.shortTitle;
-      btn.addEventListener("click", function () { goToStep(i); });
+      btn.addEventListener("click", function () { scrollToStep(i); });
       navWrap.appendChild(btn);
       return btn;
     });
@@ -160,7 +160,7 @@
     function setStep(index, animate) {
       if (index === currentIndex) return;
       currentIndex = index;
-      renderStep(index, animate);
+      renderStep(index, animate && !prefersReducedMotion);
     }
 
     function scrollToStep(index) {
@@ -169,22 +169,10 @@
       var trackTop = track.getBoundingClientRect().top + window.scrollY;
       var targetY =
         trackTop - getHeaderHeight() + CLICK_TARGET_PROGRESS[index] * scrollRange;
-      window.scrollTo({ top: targetY, behavior: "smooth" });
-    }
-
-    // Reduced motion: nav clicks switch the visible step directly, with no
-    // scroll-driven auto-play and no smooth-scroll motion of their own.
-    function goToStep(index) {
-      if (prefersReducedMotion) {
-        setStep(index, false);
-        return;
-      }
-      scrollToStep(index);
-    }
-
-    if (prefersReducedMotion) {
-      setStep(0, false);
-      return;
+      // Reduced motion: jump instantly rather than animating the scroll —
+      // the step still changes via the normal scroll-driven update() once
+      // the page lands there, so nav clicks stay fully functional.
+      window.scrollTo({ top: targetY, behavior: prefersReducedMotion ? "auto" : "smooth" });
     }
 
     var ticking = false;

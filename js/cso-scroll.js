@@ -142,10 +142,11 @@
       }
     }
 
-    if (prefersReducedMotion) {
-      applyFrame(1, 1);
-      return;
-    }
+    // Reduced motion: keep the scroll-driven spread fully interactive
+    // (that's the actual content/behavior, not a vestibular hazard) but
+    // drop the lerp smoothing so cards snap straight to their target
+    // instead of trailing behind the scroll with inertia.
+    var motionLerpFactor = prefersReducedMotion ? 1 : LERP_FACTOR;
 
     var targetSpread = 0;
     var targetHeading = 0;
@@ -180,8 +181,8 @@
     }
 
     function tick() {
-      smoothSpread = lerp(smoothSpread, targetSpread, LERP_FACTOR);
-      smoothHeading = lerp(smoothHeading, targetHeading, LERP_FACTOR);
+      smoothSpread = lerp(smoothSpread, targetSpread, motionLerpFactor);
+      smoothHeading = lerp(smoothHeading, targetHeading, motionLerpFactor);
       applyFrame(smoothSpread, smoothHeading);
 
       var settled =
