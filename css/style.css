@@ -699,128 +699,77 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* ==========================================================================
-   WHY MEDIONE / PARTNER SUPPORT — pinned step story
+   PARTNER SUPPORT
    ========================================================================== */
-.partner-story-track {
-  position: relative;
-  height: 380vh;
-}
-
-.partner-story-sticky {
-  position: sticky;
-  top: var(--header-height);
-  height: calc(100vh - var(--header-height));
-  overflow: hidden;
-  background: #F8FAFC;
+.support-grid {
+  margin-top: 56px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 26px;
 }
 
-.partner-story-heading { flex-shrink: 0; }
-
-.partner-story-layout {
-  max-width: var(--max-width);
-  width: 100%;
-  margin: 36px auto 0;
-  padding: 0 var(--pad-pc);
+.support-card {
+  width: 250px;
+  text-align: center;
+  padding: 8px 10px;
+}
+.support-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--line);
   display: flex;
-  align-items: stretch;
-  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  box-shadow: var(--shadow-soft);
+}
+.support-icon svg { width: 26px; height: 26px; }
+.support-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   WHY MEDIONE — pills
+   ========================================================================== */
+.why-pills {
+  margin-top: 52px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.why-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #D7E7F6;
+  border-radius: 999px;
+  padding: 16px 26px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--white);
+}
+.pill-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
-
-.partner-story-main {
-  flex: 0 0 76%;
-  max-width: 76%;
-  min-height: 440px;
-  background: var(--white);
-  border-radius: 26px;
-  border: 1px solid rgba(13, 103, 200, 0.07);
-  box-shadow: 0 15px 45px rgba(20, 70, 110, 0.05);
-  overflow: hidden;
-  display: flex;
-}
-
-.partner-story-visual {
-  flex: 0 0 40%;
-  position: relative;
-  background: linear-gradient(135deg, #F1F8FF 0%, #E9F3FF 100%);
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-}
-.partner-story-visual.is-leaving { opacity: 0; transform: translateY(-12px); }
-.partner-story-visual.is-entering { opacity: 0; transform: translateY(18px); }
-
-.partner-story-text {
-  flex: 1;
-  padding: 48px 46px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-}
-.partner-story-text.is-leaving { opacity: 0; transform: translateY(-12px); }
-.partner-story-text.is-entering { opacity: 0; transform: translateY(18px); }
-
-.partner-story-label {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--blue);
-  text-transform: uppercase;
-}
-.partner-story-title {
-  margin-top: 12px;
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-}
-.partner-story-desc {
-  margin-top: 16px;
-  font-size: 16px;
-  line-height: 1.8;
-  color: #526D85;
-  max-width: 480px;
-}
-
-.partner-story-nav {
-  flex: 0 0 22%;
-  max-width: 22%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-}
-
-.partner-nav-card {
-  width: 100%;
-  min-height: 66px;
-  border-radius: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.02);
-  background: #F3F6F9;
-  color: #94A0AC;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 700;
-  text-align: left;
-  padding: 0 20px;
-  cursor: pointer;
-  transition: background 0.35s var(--ease), color 0.35s var(--ease),
-    box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
-}
-.partner-nav-card:hover {
-  background: #E9EEF3;
-  transform: translateX(-2px);
-}
-.partner-nav-card.is-active {
-  background: linear-gradient(135deg, #126FD3, #567AEF);
-  color: #fff;
-  box-shadow: 0 10px 25px rgba(13, 103, 200, 0.2);
-  transform: scale(1.02);
-}
-.partner-nav-card.is-active:hover { transform: scale(1.02); }
+.pill-check svg { width: 13px; height: 13px; }
 
 /* ==========================================================================
    CONTACT
@@ -1006,21 +955,11 @@ h1, h2, h3, p { margin: 0; }
 
 /* Tablet */
 @media (max-width: 1024px) {
+  .cso-grid { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-title { font-size: 46px; }
-
-  .partner-story-track { height: 430vh; }
-  .partner-story-layout { flex-direction: column; }
-  .partner-story-main { max-width: 100%; flex: none; flex-direction: column; min-height: 0; }
-  .partner-story-visual { flex: 0 0 200px; }
-  .partner-story-text { padding: 32px 34px; }
-  .partner-story-nav {
-    max-width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
-  .partner-nav-card { flex: 1 1 calc(50% - 6px); min-height: 58px; }
+  .support-grid { gap: 20px; }
+  .support-card { width: 220px; }
 
   .about-scroll-track { height: 420vh; }
   .about-center-wrapper { width: min(560px, 82vw); }
@@ -1092,17 +1031,12 @@ h1, h2, h3, p { margin: 0; }
   .cso-cta-band { padding-bottom: 64px; }
 
   .product-grid { grid-template-columns: 1fr; gap: 20px; }
+  .cso-grid { grid-template-columns: 1fr; gap: 16px; }
+  .support-grid { flex-direction: column; align-items: center; }
+  .support-card { width: 100%; max-width: 320px; }
 
-  .partner-story-track { height: 480vh; }
-  .partner-story-sticky { padding: 20px 0; }
-  .partner-story-layout { margin-top: 22px; gap: 16px; }
-  .partner-story-main { border-radius: 20px; }
-  .partner-story-visual { flex-basis: 130px; }
-  .partner-story-text { padding: 24px 22px; }
-  .partner-story-title { font-size: 24px; }
-  .partner-story-desc { font-size: 14.5px; max-width: none; }
-  .partner-story-nav { grid-template-columns: repeat(2, 1fr); display: grid; gap: 10px; }
-  .partner-nav-card { flex: none; min-height: 54px; font-size: 13.5px; padding: 0 14px; }
+  .why-pills { flex-direction: column; align-items: stretch; }
+  .why-pill { justify-content: center; }
 
   .address-card { flex-direction: column; align-items: stretch; padding: 26px 22px; }
   .address-card-left { text-align: left; }
