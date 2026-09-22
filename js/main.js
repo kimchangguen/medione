@@ -235,13 +235,13 @@
   }
 
   /* ------------------------------------------------------------------
-   * Map link — builds a Naver Map search URL from the address
+   * Map link — "open in Google Maps" fallback for the embedded map
    * ------------------------------------------------------------------ */
   function initMapLink() {
     var link = document.getElementById("mapLink");
     if (!link) return;
     var address = "경기도 안산시 상록수로 128 올림포스보노피아";
-    link.href = "https://map.naver.com/p/search/" + encodeURIComponent(address);
+    link.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
   }
 
   /* ------------------------------------------------------------------
