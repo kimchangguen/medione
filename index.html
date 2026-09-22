@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap">
 
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/partner-support.css">
 </head>
 <body>
 
@@ -210,11 +211,13 @@
 
     <div class="partner-story-layout">
       <div class="partner-story-main">
-        <div class="partner-story-visual" id="partnerStoryVisual"></div>
+        <div class="partner-story-visual" id="partnerStoryVisual" aria-hidden="true"></div>
         <div class="partner-story-text" id="partnerStoryText">
           <span class="partner-story-label" id="partnerStoryLabel"></span>
           <h3 class="partner-story-title" id="partnerStoryTitle"></h3>
-          <p class="partner-story-desc" id="partnerStoryDesc"></p>
+          <p class="partner-story-subtitle" id="partnerStorySubtitle"></p>
+          <div class="partner-story-desc" id="partnerStoryDesc" tabindex="0" role="region" aria-labelledby="partnerStoryTitle"></div>
+          <blockquote class="partner-story-quote" id="partnerStoryQuote"></blockquote>
         </div>
       </div>
 
