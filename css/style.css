@@ -677,14 +677,16 @@ h1, h2, h3, p { margin: 0; }
 }
 
 /* ==========================================================================
-   CSO RECRUITMENT — pinned scroll card spread
+   CSO RECRUITMENT — pinned stage, scroll-triggered card spread
 
    Same track+sticky pattern as ABOUT (see .about-scroll-track): a tall
    track spends scroll distance while .cso-sticky-stage stays pinned.
-   Five placeholder cards start gathered near center and fan out to their
-   final X/Y/rotation/scale as js/cso-scroll.js drives scroll progress
-   through this track. Card content stays empty on purpose — see
-   .cso-card-media / .cso-card-content.
+   Five placeholder cards start gathered near center; js/cso-scroll.js
+   fires a single ~500ms transform transition to fan them out (or gather
+   them back) the moment it sees a scroll in that direction — position is
+   not tied to scroll distance. See js/cso-scroll.js for the state
+   machine. Card content stays empty on purpose — see .cso-card-media /
+   .cso-card-content.
    ========================================================================== */
 .cso-section {
   position: relative;
@@ -712,6 +714,7 @@ h1, h2, h3, p { margin: 0; }
   text-align: center;
   opacity: 0;
   transform: translateY(16px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
   will-change: opacity, transform;
 }
 
