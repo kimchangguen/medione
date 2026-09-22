@@ -594,26 +594,20 @@ h1, h2, h3, p { margin: 0; }
 }
 .about-image-04.is-active { transform: translate(0, 0); }
 
-/* Coded medical illustrations living inside each placeholder — the frame
-   above still owns all position/size/reveal motion; this only fills it. */
+/* Real photo living inside each placeholder — the frame above still owns
+   all position/size/reveal motion; this only fills it. */
 .about-visual {
   position: absolute;
   inset: 0;
   overflow: hidden;
   border-radius: inherit;
 }
-.about-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 40%, rgba(65, 157, 235, 0.18), rgba(255, 255, 255, 0) 65%);
-  pointer-events: none;
-}
-.about-visual-svg {
-  position: relative;
+.about-visual img {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* ==========================================================================
