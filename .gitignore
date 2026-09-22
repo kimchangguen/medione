@@ -18,3 +18,5 @@ Thumbs.db
 # Raw product source material (PDFs/photos) — kept locally only.
 # Processed web assets derived from these live in images/products/.
 public/product-source/
+
+.vercel
