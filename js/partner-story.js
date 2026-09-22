@@ -1,14 +1,7 @@
 /**
- * WHY MEDIONE / PARTNER SUPPORT — pinned step story.
- *
- * Same track+sticky pattern as about-scroll.js and cso-scroll.js: a tall
- * track "spends" scroll distance while the stage stays pinned, progress
- * comes from getBoundingClientRect() every frame, and the four steps map
- * onto fixed progress bands with a hysteresis dead-zone at each boundary
- * so slow scrolling through a transition band doesn't flicker between
- * steps. The right-hand nav cards stay in fixed slots — only which one is
- * "active" changes — and the left content crossfades in place instead of
- * being torn down and rebuilt.
+ * WHY MEDIONE / PARTNER SUPPORT — visible-only, timer-driven carousel.
+ * The observer controls playback only; step selection comes from the
+ * 2000ms timer or navigation. Scrolling never selects a step.
  */
 (function () {
   "use strict";
@@ -19,12 +12,10 @@
       "number": "01",
       "title": "제품 정보 제공",
       "shortTitle": "제품 정보 제공",
-      "subtitle": "정확한 정보로 신뢰를 더하고,\n더 나은 비즈니스를 함께 만들어갑니다.",
       "paragraphs": [
-        "메디원팜은 파트너가 제품을 정확하고 깊이 있게 이해할 수 있도록 체계적이고 신뢰도 높은 제품 정보를 제공합니다.",
-        "제품의 주요 특징과 사용 방법, 관련 자료와 변경 사항 등 영업 현장에서 필요한 정보를 이해하기 쉽게 정리하여 파트너가 거래처에 보다 명확하게 설명할 수 있도록 지원합니다.",
-        "새로운 제품이 출시되거나 기존 제품의 안내 사항이 변경되는 경우에도 필요한 내용을 빠르게 확인할 수 있도록 정보를 지속적으로 정리하고 파트너와 공유합니다.",
-        "단순히 자료를 전달하는 데 그치지 않고, 파트너가 제품을 자신 있게 소개하고 신뢰를 쌓아갈 수 있도록 정보의 정확성과 접근성을 꾸준히 높여 나갑니다."
+        "메디원팜은 파트너가 제품을 정확하게 이해하고 영업 현장에서 효과적으로 설명할 수 있도록 제품별 주요 특징과 사용 정보, 관련 자료를 체계적으로 제공합니다.",
+        "새로운 제품이나 변경되는 안내 사항도 빠르게 정리하여 공유하며, 거래처 상담 과정에서 필요한 핵심 정보를 쉽고 정확하게 확인할 수 있도록 지원합니다.",
+        "단순한 자료 전달을 넘어 파트너가 제품을 자신 있게 소개하고 신뢰도 높은 영업 활동을 이어갈 수 있도록 돕습니다."
       ],
       "quote": "정확한 정보가 더 큰 가치를 만듭니다."
     },
@@ -33,12 +24,10 @@
       "number": "02",
       "title": "전문 제품 교육",
       "shortTitle": "전문 제품 교육",
-      "subtitle": "제품에 대한 이해가 깊어질수록\n영업의 전문성과 자신감도 함께 높아집니다.",
       "paragraphs": [
-        "메디원팜은 파트너가 제품의 특징과 핵심 정보를 정확하게 이해하고 실제 영업 현장에서 효과적으로 활용할 수 있도록 체계적인 제품 교육을 지원합니다.",
-        "제품별 주요 특성과 사용 목적, 현장에서 자주 접하는 질문, 설명 과정에서 꼭 알아야 할 핵심 포인트 등을 중심으로 실무에 도움이 되는 내용을 전달합니다.",
-        "새로운 제품이나 추가로 확인해야 할 내용이 발생하는 경우에도 관련 정보를 빠르게 공유하여 파트너가 변화하는 영업 환경에 유연하게 대응할 수 있도록 돕습니다.",
-        "단순히 제품을 외우는 교육이 아니라, 파트너가 거래처 앞에서 제품의 가치를 이해하기 쉽게 설명하고 전문성을 갖춘 영업 활동을 이어갈 수 있도록 지원합니다."
+        "메디원팜은 파트너가 제품의 특성과 핵심 정보를 정확하게 이해하고 실제 영업 현장에서 활용할 수 있도록 전문적인 제품 교육을 지원합니다.",
+        "제품별 주요 특징과 사용 목적, 현장에서 자주 접하는 질문과 설명 과정에서 필요한 핵심 포인트를 중심으로 실무에 도움이 되는 내용을 체계적으로 전달합니다.",
+        "파트너가 거래처 앞에서 제품의 가치를 명확하게 설명하고 전문성을 갖춘 영업 활동을 이어갈 수 있도록 함께합니다."
       ],
       "quote": "제품을 이해하는 힘이 영업의 경쟁력이 됩니다."
     },
@@ -47,12 +36,10 @@
       "number": "03",
       "title": "거래처 동행 지원",
       "shortTitle": "거래처 동행 지원",
-      "subtitle": "필요한 순간에는 현장에서 함께하며\n파트너의 영업 활동에 힘을 더합니다.",
       "paragraphs": [
-        "파트너가 거래처와 제품 상담을 진행하는 과정에서 추가적인 설명이나 현장 지원이 필요한 경우 메디원팜은 상황에 따라 거래처 동행을 지원합니다.",
-        "제품에 대한 보다 전문적인 설명이 필요하거나 새로운 거래처에서 제품 소개가 필요한 경우, 파트너와 함께 현장을 방문하여 원활한 상담이 이루어질 수 있도록 돕습니다.",
-        "현장에서 발생하는 다양한 질문과 요구 사항을 함께 확인하고, 필요한 정보를 빠르게 공유하여 파트너가 보다 안정적으로 영업 활동을 이어갈 수 있는 환경을 만들어갑니다.",
-        "메디원팜은 파트너의 뒤에서 단순히 제품을 공급하는 회사가 아니라 필요한 순간 함께 움직이는 실질적인 영업 파트너를 지향합니다."
+        "파트너가 거래처와 제품 상담을 진행하는 과정에서 전문적인 설명이나 추가적인 현장 지원이 필요한 경우 메디원팜은 상황에 따라 거래처 동행을 지원합니다.",
+        "새로운 거래처의 제품 소개나 상담 과정에서 발생하는 질문을 현장에서 함께 확인하고 필요한 정보를 신속하게 제공하여 보다 원활한 영업 활동이 이루어질 수 있도록 돕습니다.",
+        "단순한 제품 공급을 넘어 필요한 순간 함께 움직이는 실질적인 영업 파트너를 지향합니다."
       ],
       "quote": "필요한 순간, 현장에서 함께합니다."
     },
@@ -61,12 +48,10 @@
       "number": "04",
       "title": "지속적인 파트너십",
       "shortTitle": "지속적인 파트너십",
-      "subtitle": "한 번의 거래가 아닌,\n함께 성장하는 장기적인 관계를 만들어갑니다.",
       "paragraphs": [
         "메디원팜은 단기적인 제품 공급에 그치지 않고 파트너와 지속적으로 소통하며 함께 성장하는 협력 관계를 지향합니다.",
-        "영업 과정에서 발생하는 문의와 현장의 의견을 꾸준히 공유하고, 필요한 정보와 지원을 지속적으로 제공하여 파트너가 안정적인 영업 기반을 만들어갈 수 있도록 돕습니다.",
-        "시장과 제품 환경이 변화하더라도 파트너와 긴밀하게 소통하며 필요한 내용을 함께 확인하고, 더 나은 방향을 찾아가는 관계를 만들어갑니다.",
-        "서로의 경험과 전문성을 연결하고 신뢰를 쌓아가며 오랫동안 함께 성장할 수 있는 파트너십, 그것이 메디원팜이 지향하는 협력의 방식입니다."
+        "영업 과정에서 발생하는 문의와 현장의 의견을 꾸준히 공유하고, 필요한 정보와 지원을 지속적으로 제공하여 안정적인 영업 기반을 만들어갈 수 있도록 돕습니다.",
+        "서로의 경험과 전문성을 연결하고 신뢰를 쌓으며 오랫동안 함께 성장할 수 있는 파트너십을 만들어갑니다."
       ],
       "quote": "신뢰를 연결하고, 함께 성장합니다."
     }
@@ -132,61 +117,53 @@
 </svg>`
   ];
 
-  // [enterAt, exitBelow] progress thresholds per step boundary — the gap
-  // between them is the transition band's dead-zone (hysteresis).
-  var BOUNDARIES = [
-    null,                          // step 0 is the resting state at progress 0
-    { enter: 0.38, exit: 0.30 },   // -> step 1
-    { enter: 0.60, exit: 0.52 },   // -> step 2
-    { enter: 0.82, exit: 0.74 }    // -> step 3
-  ];
-  var CLICK_TARGET_PROGRESS = [0.20, 0.45, 0.67, 0.885];
-
-  function clamp(v, min, max) {
-    return Math.min(max, Math.max(min, v));
-  }
-
-  function getHeaderHeight() {
-    var raw = getComputedStyle(document.documentElement)
-      .getPropertyValue("--header-height");
-    return parseFloat(raw) || 0;
-  }
-
-  function resolveStepIndex(progress, currentIndex) {
-    var index = currentIndex;
-    while (index < BOUNDARIES.length - 1 && progress >= BOUNDARIES[index + 1].enter) {
-      index++;
-    }
-    while (index > 0 && progress < BOUNDARIES[index].exit) {
-      index--;
-    }
-    return index;
-  }
+  var AUTOPLAY_INTERVAL = 2000;
 
   function initPartnerStory() {
-    var track = document.querySelector(".partner-story-track");
-    var stage = document.querySelector(".partner-story-sticky");
+    var card = document.querySelector("#support .partner-story-main");
     var navWrap = document.getElementById("partnerStoryNav");
     var visualEl = document.getElementById("partnerStoryVisual");
+    var artworkEl = document.getElementById("partnerStoryArtwork");
     var textEl = document.getElementById("partnerStoryText");
     var labelEl = document.getElementById("partnerStoryLabel");
     var titleEl = document.getElementById("partnerStoryTitle");
-    var descEl = document.getElementById("partnerStoryDesc");
-    var subtitleEl = document.getElementById("partnerStorySubtitle");
-    var quoteEl = document.getElementById("partnerStoryQuote");
-    if (!track || !stage || !navWrap || !visualEl || !textEl) return;
+    if (!card || !navWrap || !visualEl || !artworkEl || !textEl || !labelEl || !titleEl) return;
 
-    var prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var currentIndex = -1;
+    var autoplayTimer = null;
+    var inView = false;
+
+    // Overlapping grid cells reserve the tallest copy's natural height.
+    // Only the selected copy is visible or exposed to assistive technology.
+    var copyPanels = partnerSteps.map(function (step) {
+      var panel = document.createElement("div");
+      panel.className = "partner-story-copy";
+      panel.setAttribute("aria-hidden", "true");
+      var desc = document.createElement("div");
+      desc.className = "partner-story-desc";
+      step.paragraphs.forEach(function (paragraph) {
+        var p = document.createElement("p");
+        p.textContent = paragraph;
+        desc.appendChild(p);
+      });
+      var quote = document.createElement("blockquote");
+      quote.className = "partner-story-quote";
+      quote.textContent = step.quote;
+      panel.appendChild(desc);
+      panel.appendChild(quote);
+      textEl.appendChild(panel);
+      return panel;
+    });
 
     var navButtons = partnerSteps.map(function (step, i) {
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "partner-nav-card";
+      btn.id = "partnerStep" + step.number;
       btn.setAttribute("role", "tab");
       btn.setAttribute("data-step", step.id);
-      btn.setAttribute("aria-current", i === 0 ? "true" : "false");
+      btn.setAttribute("aria-controls", "partnerStoryPanel");
       var icon = document.createElement("span");
       icon.className = "partner-nav-icon";
       icon.setAttribute("aria-hidden", "true");
@@ -202,113 +179,90 @@
       copy.appendChild(name);
       btn.appendChild(icon);
       btn.appendChild(copy);
-      btn.addEventListener("click", function () { scrollToStep(i); });
+      btn.addEventListener("click", function () { selectManually(i); });
+      btn.addEventListener("keydown", function (event) {
+        var target = i;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") target = (i + 1) % partnerSteps.length;
+        else if (event.key === "ArrowLeft" || event.key === "ArrowUp") target = (i + partnerSteps.length - 1) % partnerSteps.length;
+        else if (event.key === "Home") target = 0;
+        else if (event.key === "End") target = partnerSteps.length - 1;
+        else return;
+        event.preventDefault();
+        navButtons[target].focus();
+        selectManually(target);
+      });
       navWrap.appendChild(btn);
       return btn;
     });
 
-    var currentIndex = -1;
-    var switchTimer = null;
-
-    function renderStep(index, animate) {
-      var step = partnerSteps[index];
-
-      function apply() {
-        labelEl.textContent = "PARTNER SUPPORT " + step.number;
-        titleEl.textContent = step.title;
-        subtitleEl.textContent = step.subtitle;
-        descEl.replaceChildren();
-        step.paragraphs.forEach(function (paragraph) {
-          var p = document.createElement("p");
-          p.textContent = paragraph;
-          descEl.appendChild(p);
-        });
-        descEl.scrollTop = 0;
-        quoteEl.textContent = step.quote;
-        visualEl.innerHTML = partnerArtwork[index];
-        visualEl.setAttribute("data-active-step", step.id);
-
-        navButtons.forEach(function (btn, i) {
-          var active = i === index;
-          btn.classList.toggle("is-active", active);
-          btn.setAttribute("aria-current", active ? "true" : "false");
-        });
-      }
-
-      if (!animate) {
-        apply();
-        return;
-      }
-
-      window.clearTimeout(switchTimer);
-      textEl.classList.add("is-leaving");
-      visualEl.classList.add("is-leaving");
-      switchTimer = window.setTimeout(function () {
-        apply();
-        textEl.classList.remove("is-leaving");
-        visualEl.classList.remove("is-leaving");
-        textEl.classList.add("is-entering");
-        visualEl.classList.add("is-entering");
-        window.requestAnimationFrame(function () {
-          window.requestAnimationFrame(function () {
-            textEl.classList.remove("is-entering");
-            visualEl.classList.remove("is-entering");
-          });
-        });
-      }, 220);
-    }
-
     function setStep(index, animate) {
       if (index === currentIndex) return;
       currentIndex = index;
-      renderStep(index, animate && !prefersReducedMotion);
-    }
-
-    function scrollToStep(index) {
-      var stageHeight = stage.offsetHeight;
-      var scrollRange = track.offsetHeight - stageHeight;
-      var trackTop = track.getBoundingClientRect().top + window.scrollY;
-      var targetY =
-        trackTop - getHeaderHeight() + CLICK_TARGET_PROGRESS[index] * scrollRange;
-      // Reduced motion: jump instantly rather than animating the scroll —
-      // the step still changes via the normal scroll-driven update() once
-      // the page lands there, so nav clicks stay fully functional.
-      window.scrollTo({ top: targetY, behavior: prefersReducedMotion ? "auto" : "smooth" });
-    }
-
-    var ticking = false;
-
-    function update() {
-      ticking = false;
-      var stageHeight = stage.offsetHeight;
-      var scrollRange = track.offsetHeight - stageHeight;
-      if (scrollRange <= 0) {
-        setStep(partnerSteps.length - 1, true);
-        return;
+      var step = partnerSteps[index];
+      visualEl.classList.remove("is-entering");
+      textEl.classList.remove("is-entering");
+      labelEl.textContent = "PARTNER SUPPORT " + step.number;
+      titleEl.textContent = step.title;
+      artworkEl.innerHTML = partnerArtwork[index];
+      visualEl.setAttribute("data-active-step", step.id);
+      card.setAttribute("aria-labelledby", "partnerStep" + step.number);
+      copyPanels.forEach(function (panel, i) {
+        var active = i === index;
+        panel.classList.toggle("is-active", active);
+        panel.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+      navButtons.forEach(function (btn, i) {
+        var active = i === index;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-current", active ? "true" : "false");
+        btn.setAttribute("aria-selected", active ? "true" : "false");
+        btn.tabIndex = active ? 0 : -1;
+      });
+      if (animate && !prefersReducedMotion) {
+        // Restart a brief entrance after updating copy and navigation together.
+        void card.offsetWidth;
+        visualEl.classList.add("is-entering");
+        textEl.classList.add("is-entering");
       }
-
-      var rectTop = track.getBoundingClientRect().top;
-      var progress = clamp(
-        (getHeaderHeight() - rectTop) / scrollRange,
-        0,
-        1
-      );
-
-      var nextIndex = resolveStepIndex(progress, Math.max(currentIndex, 0));
-      setStep(nextIndex, true);
     }
 
-    function requestUpdate() {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(update);
+    function stopAutoplay() {
+      window.clearInterval(autoplayTimer);
+      autoplayTimer = null;
     }
 
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+    function startAutoplay() {
+      if (autoplayTimer !== null || !inView || document.hidden) return;
+      autoplayTimer = window.setInterval(function () {
+        setStep((currentIndex + 1) % partnerSteps.length, true);
+      }, AUTOPLAY_INTERVAL);
+    }
+
+    function selectManually(index) {
+      stopAutoplay();
+      setStep(index, false);
+      startAutoplay();
+    }
 
     setStep(0, false);
-    update();
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        var entry = entries[entries.length - 1];
+        inView = entry.isIntersecting && entry.intersectionRatio >= 0.15;
+        if (inView) startAutoplay();
+        else stopAutoplay();
+      }, { threshold: [0, 0.15] });
+      observer.observe(card);
+    } else {
+      inView = true;
+      startAutoplay();
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stopAutoplay();
+      else startAutoplay();
+    });
   }
 
   document.addEventListener("DOMContentLoaded", initPartnerStory);

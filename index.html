@@ -197,7 +197,7 @@
   </div>
 </section>
 
-<!-- ===================== WHY MEDIONE / PARTNER SUPPORT (pinned step story) ===================== -->
+<!-- ===================== WHY MEDIONE / PARTNER SUPPORT (automatic carousel) ===================== -->
 <section class="partner-story-track" id="support">
   <div class="partner-story-sticky">
     <div class="container partner-story-heading">
@@ -210,15 +210,15 @@
     </div>
 
     <div class="partner-story-layout">
-      <div class="partner-story-main">
-        <div class="partner-story-visual" id="partnerStoryVisual" aria-hidden="true"></div>
-        <div class="partner-story-text" id="partnerStoryText">
-          <span class="partner-story-label" id="partnerStoryLabel"></span>
-          <h3 class="partner-story-title" id="partnerStoryTitle"></h3>
-          <p class="partner-story-subtitle" id="partnerStorySubtitle"></p>
-          <div class="partner-story-desc" id="partnerStoryDesc" tabindex="0" role="region" aria-labelledby="partnerStoryTitle"></div>
-          <blockquote class="partner-story-quote" id="partnerStoryQuote"></blockquote>
+      <div class="partner-story-main" id="partnerStoryPanel" role="tabpanel">
+        <div class="partner-story-visual" id="partnerStoryVisual">
+          <div class="partner-story-visual-heading">
+            <span class="partner-story-label" id="partnerStoryLabel"></span>
+            <h3 class="partner-story-title" id="partnerStoryTitle"></h3>
+          </div>
+          <div class="partner-story-artwork" id="partnerStoryArtwork" aria-hidden="true"></div>
         </div>
+        <div class="partner-story-text" id="partnerStoryText"></div>
       </div>
 
       <div class="partner-story-nav" id="partnerStoryNav" role="tablist" aria-label="파트너 지원 단계"></div>
