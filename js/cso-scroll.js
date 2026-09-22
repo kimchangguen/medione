@@ -28,11 +28,41 @@
   "use strict";
 
   var csoCards = [
-    { id: "product-information", title: "제품 정보 제공", image: null },
-    { id: "product-education", title: "전문 제품 교육", image: null },
-    { id: "sales-accompaniment", title: "거래처 동행 지원", image: null },
-    { id: "cso-partnership", title: "CSO 파트너 협력", image: null },
-    { id: "growth-support", title: "지속적인 성장 지원", image: null }
+    {
+      id: "product-information",
+      title: "성장하는 시장",
+      description: ["빠르게 성장하는","의료기기의약품 시장에서","함께 더 큰 가치를 만듭니다."],
+      image: "public/0401.png",
+      icon: "<path d=\"M4 4v16h16M8 15l4-4 3 2 5-7M15 6h5v5\"/>"
+    },
+    {
+      id: "product-education",
+      title: "든든한 파트너십",
+      description: ["전문성과 신뢰를 바탕으로","지속 가능한 협력 관계를","지향합니다."],
+      image: "public/0402.png",
+      icon: "<circle cx=\"9\" cy=\"8\" r=\"3\"/><path d=\"M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v2\"/>"
+    },
+    {
+      id: "sales-accompaniment",
+      title: "차별화된 제품 경쟁력",
+      description: ["검증된 품질의 의료기기와","의약품으로","시장에서 신뢰를 얻습니다."],
+      image: "public/0403.png",
+      icon: "<path d=\"M9 17c0-3-3-3.5-3-7a6 6 0 0 1 12 0c0 3.5-3 4-3 7ZM9 20h6M11 23h2M12 1v1M3 4l1 1M20 5l1-1M1 11h2M21 11h2\"/>"
+    },
+    {
+      id: "cso-partnership",
+      title: "체계적인 영업 지원",
+      description: ["제품 교육, 마케팅, 영업 자료 등","현장 중심의 실질적인 지원을","제공합니다."],
+      image: "public/0404.png",
+      icon: "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"m10 2-.6 3-2 .9-2.8-1L2.6 8.3l2.2 2v3.4l-2.2 2 2 3.4 2.8-1 2 .9.6 3h4l.6-3 2-.9 2.8 1 2-3.4-2.2-2v-3.4l2.2-2-2-3.4-2.8 1-2-.9-.6-3Z\"/>"
+    },
+    {
+      id: "growth-support",
+      title: "함께 만드는 더 나은 의료",
+      description: ["사람의 건강과 삶의 가치를","높이는 의미 있는 일에","함께합니다."],
+      image: "public/0405.png",
+      icon: "<path d=\"M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z\"/><path d=\"M4 12h4l2-4 3 8 2-4h5\"/>"
+    }
   ];
 
   // Initial gathered state — expressed as a ratio of card width/height so
@@ -91,13 +121,43 @@
       card.style.transitionProperty = "transform, opacity";
       card.style.transitionTimingFunction = SPREAD_EASING + ", ease-out";
 
-      var media = document.createElement("div");
-      media.className = "cso-card-media";
+      // The visual surface is independent of the animated wrapper.
+      var inner = document.createElement("div");
+      inner.className = "cso-card-inner";
       var content = document.createElement("div");
       content.className = "cso-card-content";
 
-      card.appendChild(media);
-      card.appendChild(content);
+      var icon = document.createElement("span");
+      icon.className = "cso-card-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">' + data.icon + '</svg>';
+      var title = document.createElement("h3");
+      title.className = "cso-card-title";
+      title.textContent = data.title;
+      var description = document.createElement("p");
+      description.className = "cso-card-description";
+      description.textContent = data.description.join("\n");
+      content.appendChild(icon);
+      content.appendChild(title);
+      content.appendChild(description);
+
+      var photo = document.createElement("div");
+      photo.className = "cso-card-photo";
+      var image = document.createElement("img");
+      image.src = data.image;
+      image.alt = "";
+      image.width = 1402;
+      image.height = 1122;
+      image.decoding = "async";
+      photo.appendChild(image);
+
+      var brand = document.createElement("p");
+      brand.className = "cso-card-brand";
+      brand.textContent = "MEDIONE PHARM";
+      inner.appendChild(content);
+      inner.appendChild(photo);
+      inner.appendChild(brand);
+      card.appendChild(inner);
       frag.appendChild(card);
       return card;
     });
