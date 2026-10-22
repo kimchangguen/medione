@@ -12,7 +12,7 @@
       id: "woosam-medical",
       company: "우삼의료기(주)",
       category: "MEDICAL DEVICE PARTNER",
-      image: "public/우삼의료기.png",
+      image: "public/우삼의료기.webp",
       imageFit: "contain",
       products: ["GIPS123", "NEW YOGIPS", "POCKET YOGIPS"],
       href: null
@@ -21,7 +21,7 @@
       id: "miraemedical",
       company: "미래메디칼",
       category: "MEDICAL DEVICE PARTNER",
-      image: "public/미레메디칼.png",
+      image: "public/미레메디칼.webp",
       imageFit: "contain",
       products: ["GIPSHOE Splint"],
       href: null
@@ -30,7 +30,7 @@
       id: "emtech",
       company: "이엠텍",
       category: "MEDICAL DEVICE PARTNER",
-      image: "public/이엠텍.png",
+      image: "public/이엠텍.webp",
       imageFit: "contain",
       products: ["Qplint"],
       href: null
@@ -39,7 +39,7 @@
       id: "drfrog",
       company: "Dr.FROG",
       category: "MEDICAL DEVICE PARTNER",
-      image: "public/닥터프로그.png",
+      image: "public/닥터프로그.webp",
       imageFit: "contain",
       products: ["Dr.FROG 손가락 보조기"],
       href: null
@@ -48,7 +48,7 @@
       id: "rtbio",
       company: "알티바이오",
       category: "MEDICAL DEVICE PARTNER",
-      image: "public/알티바이오.png",
+      image: "public/알티바이오.webp",
       imageFit: "contain",
       products: ["RESPLINT", "RESPLINT CYLINDER", "RECOTAP PLUS", "RT NEO"],
       href: null
@@ -57,7 +57,7 @@
       id: "baros-medical",
       company: "바로스메디칼",
       category: "MEDICAL DEVICE PARTNER",
-      image: "public/바로스메디칼.png",
+      image: "public/바로스메디칼.webp",
       imageFit: "contain",
       products: ["BAROWELLFIT"],
       href: null
@@ -66,7 +66,7 @@
       id: "donghae-medical",
       company: "동해메디칼(주)",
       category: "MEDICAL DEVICE PARTNER",
-      image: "public/동해메디칼.png",
+      image: "public/동해메디칼.webp",
       imageFit: "contain",
       products: ["TONG CAST"],
       href: null
@@ -75,7 +75,7 @@
       id: "litepharmtech",
       company: "(주)라이트팜텍",
       category: "PHARMACEUTICAL PARTNER",
-      image: "public/라이트팜텍.png",
+      image: "public/라이트팜텍.webp",
       imageFit: "contain",
       products: ["카틸란(Cartilan)"],
       href: null
@@ -84,7 +84,7 @@
       id: "pharmaresearch",
       company: "파마리서치",
       category: "PHARMACEUTICAL PARTNER",
-      image: "public/파마리서치.png",
+      image: "public/파마리서치.webp",
       imageFit: "contain",
       products: ["콘쥬란(Conjuran)"],
       href: null
@@ -93,7 +93,7 @@
       id: "dongkook-pharm",
       company: "동국제약",
       category: "PHARMACEUTICAL PARTNER",
-      image: "public/동국제약.png",
+      image: "public/동국제약.webp",
       imageFit: "contain",
       products: ["아테본(Ateborn)", "히야론퍼스트(Hyaron First)"],
       href: null

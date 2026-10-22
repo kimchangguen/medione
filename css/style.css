@@ -689,7 +689,7 @@ h1, h2, h3, p { margin: 0; }
    ========================================================================== */
 .cso-section {
   position: relative;
-  background: #F3F9FF url("../public/0400.png") center center / cover no-repeat;
+  background: #F3F9FF url("../public/0400.webp") center center / cover no-repeat;
 }
 
 .cso-scroll-track {
@@ -698,7 +698,7 @@ h1, h2, h3, p { margin: 0; }
 }
 
 .cso-sticky-stage {
-  background: url("../public/0400.png") center center / cover no-repeat;
+  background: url("../public/0400.webp") center center / cover no-repeat;
   position: sticky;
   top: var(--header-height);
   height: calc(100vh - var(--header-height));

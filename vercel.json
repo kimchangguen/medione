@@ -1,3 +1,11 @@
 {
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "medione-pi.vercel.app" }],
+      "destination": "https://www.medione-pharm.com/:path*",
+      "permanent": true
+    }
+  ]
 }
