@@ -2,9 +2,9 @@
   "outputDirectory": ".",
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "medione-pi.vercel.app" }],
-      "destination": "https://www.medione-pharm.com/:path*",
+      "destination": "https://www.medione-pharm.com/$1",
       "permanent": true
     }
   ]
